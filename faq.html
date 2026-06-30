@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — CreatorKit AI</title>
+    <meta name="description" content="Find answers to common questions about CreatorKit AI — the AI-powered content creation toolkit for social media creators.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-dark: #0a0b14;
+            --bg-card: rgba(22, 24, 39, 0.65);
+            --surface: rgba(255, 255, 255, 0.03);
+            --neon-purple: #8b5cf6;
+            --neon-blue: #3b82f6;
+            --neon-pink: #ec4899;
+            --neon-cyan: #06b6d4;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(139, 92, 246, 0.3);
+            --glow-purple: rgba(139, 92, 246, 0.15);
+            --glow-blue: rgba(59, 130, 246, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(ellipse at 15% 50%, var(--glow-purple), transparent 50%),
+                radial-gradient(ellipse at 85% 20%, var(--glow-blue), transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 11, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .navbar-links { display: flex; gap: 2rem; align-items: center; }
+        .navbar-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .navbar-links a:hover,
+        .navbar-links a.active { color: var(--text-main); }
+        .navbar-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            border-radius: 1px;
+        }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* Section */
+        .section { padding: 5rem 0; }
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--neon-purple);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+        }
+        .glass-card:hover::before { opacity: 1; }
+
+        /* Icon container */
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(5, 5, 10, 0.9);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--neon-purple); }
+        .footer-copy { color: var(--text-dim); font-size: 0.85rem; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.6s ease-out both; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 11, 20, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .navbar-links.open { display: flex; }
+            .mobile-toggle { display: block; }
+            .section-title { font-size: 1.8rem; }
+            .section { padding: 3rem 0; }
+            .container { padding: 0 1.2rem; }
+        }
+
+        /* ========== Page-Specific: FAQ ========== */
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .faq-container {
+            max-width: 860px;
+            margin: 0 auto 4rem;
+        }
+
+        .faq-category {
+            margin-bottom: 2.5rem;
+        }
+        .faq-category-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--neon-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+            padding-left: 0.5rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+        .faq-item.active {
+            border-color: var(--border-hover);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .faq-question:hover {
+            color: var(--neon-purple);
+        }
+
+        .faq-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--text-dim);
+        }
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+            color: var(--neon-purple);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .faq-question {
+                font-size: 0.93rem;
+                padding: 1rem 1.2rem;
+            }
+            .faq-answer-inner {
+                padding: 0 1.2rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">CreatorKit AI</a>
+            <button class="mobile-toggle" onclick="document.querySelector('.navbar-links').classList.toggle('open')" aria-label="Toggle menu">☰</button>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms</a>
+                <a href="faq.html" class="active">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="container">
+        <div class="page-header animate-in">
+            <h1>Frequently Asked Questions</h1>
+            <p>Everything you need to know about CreatorKit AI</p>
+        </div>
+    </div>
+
+    <!-- FAQ Content -->
+    <div class="container">
+        <div class="faq-container">
+
+            <!-- General -->
+            <div class="faq-category animate-in" style="animation-delay: 0.1s;">
+                <h2 class="faq-category-title">General</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is CreatorKit AI?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            CreatorKit AI is a free, all-in-one content creation toolkit available on the Google Play Store. It provides 16+ creative tools including AI-powered caption, hashtag, hook, post, and video script generators, a stylish Unicode font converter with 100+ styles, a gaming nickname generator, an Instagram bio generator, a decorative symbol library, and a curated AI facts feed. CreatorKit AI is designed to help content creators, social media influencers, and gamers create engaging content faster.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need to create an account to use the app?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            No! CreatorKit AI uses secure, anonymous device-based authentication. When you first open the app, a unique Device ID is generated automatically. This allows you to save favorites, track history, and manage your preferences without the hassle of signing up for an account. No personal information like your name, email, or phone number is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Which platforms does CreatorKit AI support?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Our tools are optimized for all major social media platforms including Instagram, TikTok, YouTube, LinkedIn, Twitter/X, Threads, Facebook, and WhatsApp. You can generate platform-specific content tailored to each platform's best practices and audience expectations.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="faq-category animate-in" style="animation-delay: 0.2s;">
+                <h2 class="faq-category-title">Features</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the Stylish Font Converter?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            The Font Converter is CreatorKit AI's core feature. It transforms your regular text into 100+ unique Unicode font styles that work across all platforms — Instagram bios, WhatsApp statuses, gaming profiles, Facebook posts, and more. You can preview, copy, share, and favorite your converted text. Some premium font styles are available exclusively for Premium subscribers.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does the AI Caption Generator work?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Simply enter a topic and select a category (Travel, Motivation, Fitness, Technology, Food, Nature, Fashion, and more). Our AI engine, powered by Google Gemini and OpenAI, generates engaging, platform-ready captions for you. You can copy, share, or save them to your favorites for later use.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the AI Engagement Predictor?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            The Engagement Predictor analyzes your content before you post it. Enter your content type, topic, hook, caption, hashtags, and target audience, and our AI evaluates your content's structure to provide a virality score with color-coded ratings (Excellent, Very Good, Good, Average, or Poor) along with actionable recommendations to maximize your reach and audience retention.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the AI Video Script Generator?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            The Script Generator creates ready-to-film scripts for short-form video content. Choose your platform (Instagram Reels, YouTube Shorts, TikTok, Facebook Reels), duration (15s to 90s), style (Educational, Storytelling, Motivational, Funny, and more), tone, and language. Each script includes an attention-grabbing hook and structured body content.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the AI Facts Feed?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            The AI Facts Feed is a curated, infinite-scrolling feed of fascinating facts about AI, technology, robotics, and more. Facts are sourced from reputable sources including Wikipedia, academic journals, and official tech publications. You can browse by category, listen to facts with text-to-speech, bookmark your favorites, and share interesting facts with others.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What tools are included in Bio, Nickname & Symbols?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            This includes three tools: (1) Instagram Bio Generator — create professional bios with customizable categories, emoji preferences, and personalization; (2) Stylish Nickname Generator — generate decorated gaming nicknames with Unicode symbols for Free Fire, BGMI, Instagram, and more; (3) Symbol Library — browse and copy decorative symbols, stars, hearts, arrows, gaming symbols, and special characters.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium -->
+            <div class="faq-category animate-in" style="animation-delay: 0.3s;">
+                <h2 class="faq-category-title">Premium</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What can I do for free?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Free users get access to basic font conversion, the full Symbol Library, Bio Generator, Nickname Generator, WhatsApp Text Generator, AI Facts Feed, and 3 daily AI generations per tool type. That's a lot of creative power at no cost!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What does Premium include?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Premium unlocks the full CreatorKit AI experience: 100+ premium font styles, up to 20 daily AI generations per tool type (1000+ monthly), access to all AI-powered tools without restrictions, an ad-free experience, and smart clipboard detection that automatically converts copied text. Premium is available as Monthly, Yearly (best value), or Lifetime plans.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I subscribe to Premium?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            You can upgrade to Premium directly within the app. Tap on any premium feature or visit the upgrade screen to choose your plan. All payments are securely processed through the Google Play Store. Your subscription can be managed (upgraded, downgraded, or cancelled) through your Google Play Store account settings.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I cancel my subscription?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            To cancel your Premium subscription, open the Google Play Store app, tap your profile icon, go to "Payments &amp; subscriptions" → "Subscriptions," find CreatorKit AI, and tap "Cancel subscription." Your premium benefits will remain active until the end of your current billing period.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Privacy -->
+            <div class="faq-category animate-in" style="animation-delay: 0.4s;">
+                <h2 class="faq-category-title">Data &amp; Privacy</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I own the AI-generated content?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes! Any caption, hashtag, hook, post, script, or bio generated by our AI tools based on your prompts is yours to use freely on your social media platforms, websites, or any other channels. There are no restrictions on how you use the generated content.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my data safe?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes. CreatorKit AI uses industry-standard security measures including JWT authentication, HTTPS encryption, and rate limiting. We do not collect personal information like your name or email. Your AI prompts are sent to our AI providers (Google Gemini / OpenAI) solely for content generation and are not permanently stored. You can delete all your data at any time through the app's Settings.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I delete my data?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Go to Profile/Settings in the app and use the "Delete All User Data" option in the Danger Zone section. This will permanently remove all your stored data including favorites, history, and device registration from our servers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="faq-category animate-in" style="animation-delay: 0.5s;">
+                <h2 class="faq-category-title">Support</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I contact support?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            You can reach our support team by emailing <a href="mailto:support@creatorkit.ai" style="color: var(--neon-purple); text-decoration: none;">support@creatorkit.ai</a>. We're happy to help with any questions, issues, or feedback about CreatorKit AI.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is the AI-generated content always accurate?</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            While we use top-tier AI models (Google Gemini and OpenAI) to generate high-quality content, AI can occasionally produce inaccurate or unexpected results. We recommend reviewing all AI-generated content before publishing. For AI Facts, source links are provided so you can verify the information independently.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 CreatorKit AI. All rights reserved.</p>
+        <p class="footer-copy" style="margin-top: 0.5rem;">Contact: support@creatorkit.ai</p>
+    </footer>
+
+    <!-- Accordion Toggle Script -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasActive = item.classList.contains('active');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                // Toggle current
+                if (!wasActive) item.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

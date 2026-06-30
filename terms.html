@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms &amp; Conditions — CreatorKit AI</title>
+    <meta name="description" content="Read the Terms and Conditions for CreatorKit AI, the AI-powered content creation toolkit for social media creators.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-dark: #0a0b14;
+            --bg-card: rgba(22, 24, 39, 0.65);
+            --surface: rgba(255, 255, 255, 0.03);
+            --neon-purple: #8b5cf6;
+            --neon-blue: #3b82f6;
+            --neon-pink: #ec4899;
+            --neon-cyan: #06b6d4;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(139, 92, 246, 0.3);
+            --glow-purple: rgba(139, 92, 246, 0.15);
+            --glow-blue: rgba(59, 130, 246, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(ellipse at 15% 50%, var(--glow-purple), transparent 50%),
+                radial-gradient(ellipse at 85% 20%, var(--glow-blue), transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 11, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .navbar-links { display: flex; gap: 2rem; align-items: center; }
+        .navbar-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .navbar-links a:hover,
+        .navbar-links a.active { color: var(--text-main); }
+        .navbar-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            border-radius: 1px;
+        }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* Section */
+        .section { padding: 5rem 0; }
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--neon-purple);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+        }
+        .glass-card:hover::before { opacity: 1; }
+
+        /* Icon container */
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(5, 5, 10, 0.9);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--neon-purple); }
+        .footer-copy { color: var(--text-dim); font-size: 0.85rem; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.6s ease-out both; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 11, 20, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .navbar-links.open { display: flex; }
+            .mobile-toggle { display: block; }
+            .section-title { font-size: 1.8rem; }
+            .section { padding: 3rem 0; }
+            .container { padding: 0 1.2rem; }
+        }
+
+        /* Page-Specific Styles */
+        .page-header { padding: 4rem 0 2rem; text-align: center; }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+        .page-header .date { color: var(--text-dim); font-size: 0.95rem; }
+        .content-card { max-width: 860px; margin: 0 auto 4rem; }
+        .content-card h2 { font-size: 1.4rem; font-weight: 700; color: var(--text-main); margin: 2.5rem 0 1rem; padding-left: 1rem; border-left: 3px solid var(--neon-purple); }
+        .content-card h2:first-of-type { margin-top: 0; }
+        .content-card p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+        .content-card ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+        .content-card li { color: var(--text-muted); padding: 0.4rem 0 0.4rem 1.5rem; position: relative; font-size: 0.95rem; }
+        .content-card li::before { content: '→'; position: absolute; left: 0; color: var(--neon-purple); font-weight: 600; }
+        .content-card strong { color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">CreatorKit AI</a>
+            <button class="mobile-toggle" onclick="document.querySelector('.navbar-links').classList.toggle('open')" aria-label="Toggle menu">☰</button>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html" class="active">Terms</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header animate-in">
+        <h1>Terms &amp; Conditions</h1>
+        <p class="date">Last Updated: June 2026</p>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="glass-card content-card animate-in" style="animation-delay: 0.15s;">
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using CreatorKit AI ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the App. CreatorKit AI is available on the Google Play Store and is intended for users who are at least <strong>13 years of age</strong>.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>CreatorKit AI is a mobile application that provides content creators with a suite of creative tools, including:</p>
+            <ul>
+                <li><strong>Unicode Font Converter:</strong> Convert text into 100+ stylish Unicode font styles for social media profiles and posts</li>
+                <li><strong>AI Caption Generator:</strong> Generate engaging social media captions powered by AI</li>
+                <li><strong>AI Hashtag Generator:</strong> Create platform-optimized hashtags for Instagram, TikTok, YouTube, LinkedIn, Twitter/X, Threads, and Facebook</li>
+                <li><strong>AI Viral Hook Generator:</strong> Generate attention-grabbing hooks for short-form video content</li>
+                <li><strong>AI Post Generator:</strong> Create complete, platform-optimized social media posts</li>
+                <li><strong>AI Video Script Generator:</strong> Generate structured scripts for Reels, Shorts, and TikToks</li>
+                <li><strong>AI Engagement Predictor:</strong> Analyze and predict content engagement before posting</li>
+                <li><strong>Instagram Bio Generator:</strong> Create professional and creative social media bios</li>
+                <li><strong>Stylish Nickname Generator:</strong> Generate decorated gaming and social media nicknames</li>
+                <li><strong>Symbol Library:</strong> Browse and copy decorative symbols, stars, hearts, and special characters</li>
+                <li><strong>WhatsApp Text Generator:</strong> Create stylish messages for WhatsApp</li>
+                <li><strong>AI Facts Feed:</strong> Browse curated facts about AI, technology, and robotics</li>
+            </ul>
+
+            <h2>3. Device Registration &amp; Authentication</h2>
+            <p>CreatorKit AI uses <strong>anonymous device-based authentication</strong>. When you first open the App, a unique Device ID is generated and registered with our servers. This allows us to save your preferences, favorites, and usage limits without requiring you to create a user account. <strong>No personal information</strong> (name, email, phone number) is required to use the App.</p>
+
+            <h2>4. Free and Premium Tiers</h2>
+            <p><strong>Free Tier:</strong> All users can access the core features of the App at no cost, including basic font conversion, the Symbol Library, Bio Generator, Nickname Generator, WhatsApp Text Generator, and the AI Facts Feed. Free users receive <strong>3 daily AI generations per tool type</strong>.</p>
+            <p><strong>Premium Tier:</strong> Premium subscriptions are available as Monthly, Yearly, or Lifetime plans, managed through Google Play Store via RevenueCat. Premium users receive:</p>
+            <ul>
+                <li>Access to <strong>100+ premium font styles</strong></li>
+                <li>Up to <strong>20 daily AI generations per tool type</strong> (1000+ monthly)</li>
+                <li>All AI-powered tools without restrictions</li>
+                <li>Ad-free experience</li>
+                <li>Smart clipboard detection feature</li>
+            </ul>
+
+            <h2>5. Subscriptions and Billing</h2>
+            <p>All premium subscriptions are processed through <strong>Google Play Store</strong>. Subscription management, including cancellation and refund requests, must be handled through your Google Play Store account settings. We do not directly process payments or store payment information.</p>
+            <p>Subscription prices are displayed in the App and on the Google Play Store listing. Subscriptions automatically renew unless canceled at least <strong>24 hours before the end of the current billing period</strong>.</p>
+
+            <h2>6. AI-Generated Content</h2>
+            <p>The App uses third-party AI services (<strong>Google Gemini</strong> and <strong>OpenAI</strong>) to generate content including captions, hashtags, hooks, posts, video scripts, and engagement predictions.</p>
+            <ul>
+                <li><strong>Ownership:</strong> Any content generated by our AI tools based on your prompts is yours to use freely on your social media platforms, websites, or other channels.</li>
+                <li><strong>No Guarantee:</strong> AI-generated content is provided "as is" without any warranties regarding accuracy, originality, completeness, or suitability. AI models may occasionally produce inaccurate, incomplete, or inappropriate content.</li>
+                <li><strong>User Responsibility:</strong> You are solely responsible for reviewing, editing, and ensuring the appropriateness of AI-generated content before publishing it on any platform. CreatorKit AI is not liable for any consequences arising from your use of AI-generated content.</li>
+            </ul>
+
+            <h2>7. AI Facts &amp; Third-Party Content</h2>
+            <p>CreatorKit AI aggregates publicly available facts, data, and research from various third-party sources including Wikipedia, academic journals (such as Arxiv), and official technology publications. This content is provided strictly for <strong>educational and informational purposes</strong>.</p>
+            <p>We do not claim ownership or copyright over aggregated content. Original sources are credited and linked whenever possible. If you are a copyright owner and believe your content is being used improperly, please contact us.</p>
+
+            <h2>8. User Responsibilities</h2>
+            <p>You agree to:</p>
+            <ul>
+                <li>Use CreatorKit AI for <strong>lawful purposes only</strong></li>
+                <li>Not attempt to reverse-engineer, decompile, or tamper with the App</li>
+                <li>Not circumvent usage limits, rate limits, or premium restrictions</li>
+                <li>Not use the App to generate harmful, offensive, or illegal content</li>
+                <li>Take responsibility for all content you create and share using the App</li>
+            </ul>
+
+            <h2>9. Intellectual Property</h2>
+            <ul>
+                <li>The CreatorKit AI App, its design, branding, and original code are the <strong>property of CreatorKit AI</strong> and its developers</li>
+                <li>Unicode font styles are based on the public Unicode standard and are not proprietary</li>
+                <li>AI-generated content ownership transfers to the user upon generation</li>
+                <li>The AI Facts content is sourced from publicly available information and credited to original authors</li>
+            </ul>
+
+            <h2>10. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, CreatorKit AI and its developers shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from:</p>
+            <ul>
+                <li>Your use of or inability to use the App</li>
+                <li>Any AI-generated content, including its accuracy or suitability</li>
+                <li>Loss of data, engagement, or audience resulting from reliance on the App's features</li>
+                <li>Interruptions or errors in the App's services</li>
+                <li>Actions of third-party AI providers</li>
+            </ul>
+
+            <h2>11. Service Availability</h2>
+            <p>We strive to maintain the App's availability but do not guarantee uninterrupted service. The App may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control. We reserve the right to modify, suspend, or discontinue any feature of the App at any time.</p>
+
+            <h2>12. Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms and Conditions at any time. Changes will be effective upon posting the updated Terms within the App or on our website. Your continued use of the App after changes are posted constitutes your acceptance of the revised Terms.</p>
+
+            <h2>13. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which CreatorKit AI operates, without regard to conflict of law principles.</p>
+
+            <h2>14. Contact Us</h2>
+            <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
+            <p><strong>Email:</strong> <a href="mailto:support@creatorkit.ai" style="color: var(--neon-purple); text-decoration: none; transition: color 0.3s;">support@creatorkit.ai</a></p>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 CreatorKit AI. All rights reserved.</p>
+        <p class="footer-copy" style="margin-top: 0.5rem;">Contact: support@creatorkit.ai</p>
+    </footer>
+
+</body>
+</html>

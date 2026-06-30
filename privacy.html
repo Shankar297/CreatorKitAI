@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — CreatorKit AI</title>
+    <meta name="description" content="Learn how CreatorKit AI collects, uses, and protects your data. Read our privacy policy for our AI-powered content creation app.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-dark: #0a0b14;
+            --bg-card: rgba(22, 24, 39, 0.65);
+            --surface: rgba(255, 255, 255, 0.03);
+            --neon-purple: #8b5cf6;
+            --neon-blue: #3b82f6;
+            --neon-pink: #ec4899;
+            --neon-cyan: #06b6d4;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(139, 92, 246, 0.3);
+            --glow-purple: rgba(139, 92, 246, 0.15);
+            --glow-blue: rgba(59, 130, 246, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(ellipse at 15% 50%, var(--glow-purple), transparent 50%),
+                radial-gradient(ellipse at 85% 20%, var(--glow-blue), transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 11, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .navbar-links { display: flex; gap: 2rem; align-items: center; }
+        .navbar-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .navbar-links a:hover,
+        .navbar-links a.active { color: var(--text-main); }
+        .navbar-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            border-radius: 1px;
+        }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* Section */
+        .section { padding: 5rem 0; }
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--neon-purple);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+        }
+        .glass-card:hover::before { opacity: 1; }
+
+        /* Icon container */
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(5, 5, 10, 0.9);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--neon-purple); }
+        .footer-copy { color: var(--text-dim); font-size: 0.85rem; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.6s ease-out both; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 11, 20, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .navbar-links.open { display: flex; }
+            .mobile-toggle { display: block; }
+            .section-title { font-size: 1.8rem; }
+            .section { padding: 3rem 0; }
+            .container { padding: 0 1.2rem; }
+        }
+
+        /* Page-Specific Styles */
+        .page-header { padding: 4rem 0 2rem; text-align: center; }
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .page-header .date { color: var(--text-dim); font-size: 0.95rem; }
+
+        .content-card { max-width: 860px; margin: 0 auto 4rem; }
+        .content-card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--neon-purple);
+        }
+        .content-card h2:first-of-type { margin-top: 0; }
+        .content-card p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+        .content-card ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+        .content-card li {
+            color: var(--text-muted);
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        .content-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--neon-purple);
+            font-weight: 600;
+        }
+        .content-card strong { color: var(--text-main); }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .content-card { margin: 0 auto 2.5rem; }
+            .glass-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">CreatorKit AI</a>
+            <button class="mobile-toggle" onclick="document.querySelector('.navbar-links').classList.toggle('open')" aria-label="Toggle menu">☰</button>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="privacy.html" class="active">Privacy Policy</a>
+                <a href="terms.html">Terms</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="container">
+        <div class="page-header animate-in">
+            <h1>Privacy Policy</h1>
+            <p class="date">Last Updated: June 2026</p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Content -->
+    <div class="container">
+        <div class="glass-card content-card animate-in" style="animation-delay: 0.15s;">
+
+            <h2>1. Introduction</h2>
+            <p>CreatorKit AI ("the App") is a content creation toolkit available on Google Play Store. The App provides AI-powered tools for generating social media content, stylish Unicode fonts, and curated technology facts. This Privacy Policy describes how we collect, use, and protect your information when you use our App. By using CreatorKit AI, you agree to the practices described in this policy.</p>
+
+            <h2>2. Information We Collect</h2>
+            <p><strong>Device Information:</strong> When you first open the App, we generate a unique Device ID (UUID) to identify your device. This allows us to save your preferences, favorites, and usage history without requiring you to create a traditional user account. No personal information such as your name, email address, or phone number is collected.</p>
+            <p><strong>Usage Data:</strong> We collect anonymous usage analytics including the types of tools used (font conversions, AI generations, facts viewed), daily usage counts, and feature interactions. This data helps us improve the App experience and optimize our AI models.</p>
+            <p><strong>AI Input Data:</strong> When you use our AI-powered tools (Caption Generator, Hashtag Generator, Hook Generator, Post Generator, Video Script Generator, or Engagement Predictor), the text prompts you provide (such as topics, categories, and preferences) are sent to our third-party AI providers for processing. This data is used solely to generate your requested content and is not stored permanently by our AI providers.</p>
+            <p><strong>Favorites &amp; History:</strong> The App stores your bookmarked items (fonts, symbols, nicknames, bios, AI-generated content) and conversion history locally and on our servers, associated with your Device ID.</p>
+
+            <h2>3. Third-Party Services</h2>
+            <p>CreatorKit AI uses the following third-party services:</p>
+            <ul>
+                <li><strong>Google Gemini API</strong> — For AI content generation (captions, hashtags, hooks, scripts, posts, engagement predictions)</li>
+                <li><strong>OpenAI API</strong> — As a fallback AI provider for content generation</li>
+                <li><strong>RevenueCat</strong> — For managing premium subscriptions and in-app purchases through Google Play Store</li>
+                <li><strong>Supabase</strong> — For secure cloud database storage of facts, usage data, and device preferences</li>
+            </ul>
+            <p>Each third-party service operates under its own privacy policy. We do not sell, rent, or share your personal data with these providers beyond what is necessary to deliver the App's functionality.</p>
+
+            <h2>4. How We Use Your Information</h2>
+            <ul>
+                <li>To provide and maintain CreatorKit AI's features and services</li>
+                <li>To save your favorites, bookmarks, and conversion history</li>
+                <li>To generate AI-powered content based on your prompts</li>
+                <li>To enforce daily usage limits (free and premium tiers)</li>
+                <li>To verify and manage premium subscription status</li>
+                <li>To detect, prevent, and address technical issues</li>
+                <li>To improve our AI models and user experience through anonymous analytics</li>
+            </ul>
+
+            <h2>5. Data Retention</h2>
+            <ul>
+                <li><strong>Conversion History:</strong> Automatically deleted after 5 days</li>
+                <li><strong>Favorites:</strong> Retained as long as the App is installed and active on your device</li>
+                <li><strong>Device Data:</strong> Retained while your device is registered with our service</li>
+                <li><strong>AI Generation Logs:</strong> Retained for service improvement and usage tracking; do not contain personally identifiable information</li>
+            </ul>
+
+            <h2>6. Data Security</h2>
+            <p>We implement industry-standard security measures to protect your data, including:</p>
+            <ul>
+                <li>JSON Web Token (JWT) authentication for all API communications</li>
+                <li>HTTPS encryption for all data transmitted between the App and our servers</li>
+                <li>Rate limiting (60 requests per hour per device) to prevent abuse</li>
+                <li>Secure cloud infrastructure through our hosting providers</li>
+            </ul>
+            <p>However, no method of electronic storage or transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+            <h2>7. Children's Privacy</h2>
+            <p>CreatorKit AI is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have inadvertently collected data from a child under 13, we will take steps to delete such information promptly.</p>
+
+            <h2>8. Your Rights and Choices</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li><strong>Delete all your data:</strong> Use the "Delete All User Data" option in the App's Profile/Settings section to remove all your stored data including favorites, history, and device registration</li>
+                <li><strong>Opt out of analytics:</strong> Contact us to request exclusion from anonymous usage analytics</li>
+                <li><strong>Access your data:</strong> Contact us to request information about the data we hold associated with your Device ID</li>
+            </ul>
+
+            <h2>9. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be reflected by updating the "Last Updated" date at the top of this page. We encourage you to review this Privacy Policy periodically. Your continued use of the App after changes are posted constitutes your acceptance of the updated policy.</p>
+
+            <h2>10. Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at:</p>
+            <p><strong>Email:</strong> <a href="mailto:support@creatorkit.ai" style="color: var(--neon-purple); text-decoration: none; transition: color 0.3s;">support@creatorkit.ai</a></p>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 CreatorKit AI. All rights reserved.</p>
+        <p class="footer-copy" style="margin-top: 0.5rem;">Contact: support@creatorkit.ai</p>
+    </footer>
+
+</body>
+</html>
